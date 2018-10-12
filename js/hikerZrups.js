@@ -1,26 +1,42 @@
-window.onload = function() {
-
+// Global Variables
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+var img = new Image();
 
-var gravity = 3;
+// Constructor HikerZrups
 
-var hikerZrups = {
-  x: 0,
-  y: 610,
-  width: 20,
-  height: 20,
-  speedX: 0,
-  speedY: gravity,
-  color: rgb(255,0,0),
+function HikerZrups(lives, x, y, width, height, color) {
+  this.lives = lives,
+  this.x = x,
+  this.y = y,
+  this.width = width,
+  this.height = height,
+  this.color = color,
+  this.speedX = 4,
+  this.speedY = 4
+}
 
-  draw: function() {
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-    return;
-  }
+HikerZrups.prototype.draw = function() {
+  ctx.fillStyle = this.color;
+  ctx.fillRect(this.x, this.y, this.width, this.height);
+}
+
+HikerZrups.prototype.moveRight = function() {
+  this.x += this.speedX;
 };
 
-hikerZrups.draw();
-
+HikerZrups.prototype.moveLeft = function() {
+  this.x -= this.speedX;
 };
+
+HikerZrups.prototype.moveUp = function() {
+  this.y -= this.speedY;
+};
+
+HikerZrups.prototype.moveDown = function() {
+  this.y += this.speedY;
+};
+
+HikerZrups.prototype.receiveDamage = function(damage) {
+   this.lives -= damage //cómo en los vikings ;)
+}

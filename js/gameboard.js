@@ -1,12 +1,11 @@
 //iceblue: rgb(162,210,223)
-
-window.onload = function() {
-
+//Global Variables
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 //Draw floor
 
+function Gameboard() {
 ctx.fillStyle = 'rgb(162,210,223)';
 ctx.fillRect(0, 630, 600, 650);
 
@@ -111,5 +110,5 @@ ctx.lineTo(500, 120);
 ctx.lineWidth = 5;
 ctx.strokeStyle = 'rgb(130, 82, 1)';
 ctx.stroke();
-
 };
+
