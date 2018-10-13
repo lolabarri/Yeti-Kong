@@ -12,8 +12,10 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.width = width,
   this.height = height,
   this.color = color,
-  this.speedX = 4,
-  this.speedY = 4
+  this.speedX = 10,
+  this.speedY = 10,
+  this.gravity = 3,
+  this.gravitySpeed = 0
 }
 
 HikerZrups.prototype.draw = function() {
@@ -35,6 +37,30 @@ HikerZrups.prototype.moveUp = function() {
 
 HikerZrups.prototype.moveDown = function() {
   this.y += this.speedY;
+};
+
+HikerZrups.prototype.fall = function() {
+  this.gravitySpeed += this.gravity;
+  this.y += this.gravitySpeed;
+}
+
+HikerZrups.prototype.hitBottom = function() {
+  var rockbottom = 630 - this.height;
+  var rocktop = 0 + this.height;
+  var rockright = 590 - this.width;
+  var rockleft = 0 + this.width;
+  if (this.y > rockbottom) {
+    this.y = rockbottom;
+  }
+  else if (this.y < rocktop) {
+    this.y = rocktop;
+  }
+  else if (this.x > rockright) {
+    this.x = rockright;
+  }
+  else if (this.x < rockleft) {
+    this.x = rockleft;
+  }
 };
 
 HikerZrups.prototype.receiveDamage = function(damage) {

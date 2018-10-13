@@ -1,12 +1,13 @@
 window.onload = function() {
 
-  var gravity = 3;
   var HikerZ = new HikerZrups(3, 0, 610, 20, 20, 'rgb(255,0,0)');
 
   function updateCanvas() {
     ctx.clearRect(0, 0, 600, 650);
     Gameboard();
     HikerZ.draw();
+    HikerZ.hitBottom();
+    // HikerZ.fall();
   };
 
   document.onkeydown = function(e) {
