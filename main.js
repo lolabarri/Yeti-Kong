@@ -21,7 +21,7 @@ window.onload = function() {
     Plat5.draw();
     Plat6.draw();
     HikerZ.draw();
-    HikerZ.speedY -= gravity;
+    HikerZ.movement(gravity);
     HikerZ.hitBottom();
   };
 
