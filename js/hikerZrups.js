@@ -12,11 +12,11 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.width = width,
   this.height = height,
   this.color = color,
-  this.speedX = 10,
-  this.speedY = 10,
-  this.gravity = 3,
-  this.gravitySpeed = 0
-}
+  this.speed = 10,
+  this.speedX = 10.5,
+  this.speedY = 15,
+  this.jumping = false;
+};
 
 HikerZrups.prototype.draw = function() {
   ctx.fillStyle = this.color;
@@ -39,10 +39,17 @@ HikerZrups.prototype.moveDown = function() {
   this.y += this.speedY;
 };
 
-HikerZrups.prototype.fall = function() {
-  this.gravitySpeed += this.gravity;
-  this.y += this.gravitySpeed;
-}
+HikerZrups.prototype.jump = function() {
+  if (!this.jumping) {
+    this.jumping = true;
+    this.speedY = this.speed*2};
+};
+
+// HikerZrups.prototype.moveUpRight = function() {
+//   this.speedY = 0.5;
+//   this.x += this.speedX;
+//   this.y -= this.speedY;
+// };
 
 HikerZrups.prototype.hitBottom = function() {
   var rockbottom = 630 - this.height;
@@ -63,6 +70,6 @@ HikerZrups.prototype.hitBottom = function() {
   }
 };
 
-HikerZrups.prototype.receiveDamage = function(damage) {
-   this.lives -= damage //cómo en los vikings ;)
-}
+// HikerZrups.prototype.receiveDamage = function(damage) {
+//    this.lives -= damage //cómo en los vikings ;)
+// }

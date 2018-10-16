@@ -9,50 +9,6 @@ function Gameboard() {
 ctx.fillStyle = 'rgb(162,210,223)';
 ctx.fillRect(0, 630, 600, 650);
 
-//Draw platforms
-
-ctx.beginPath();
-ctx.moveTo(75, 575);
-ctx.lineTo(600, 550);
-ctx.lineWidth = 10;
-ctx.strokeStyle = 'rgb(162,210,223)';
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(0, 460);
-ctx.lineTo(525, 485);
-ctx.lineWidth = 10;
-ctx.strokeStyle = 'rgb(162,210,223)';
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(75, 400);
-ctx.lineTo(600, 375);
-ctx.lineWidth = 10;
-ctx.strokeStyle = 'rgb(162,210,223)';
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(0, 275);
-ctx.lineTo(525, 300);
-ctx.lineWidth = 10;
-ctx.strokeStyle = 'rgb(162,210,223)';
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(75, 200);
-ctx.lineTo(600, 175);
-ctx.lineWidth = 10;
-ctx.strokeStyle = 'rgb(162,210,223)';
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(0, 100);
-ctx.lineTo(525, 125);
-ctx.lineWidth = 10;
-ctx.strokeStyle = 'rgb(162,210,223)';
-ctx.stroke();
-
 //Draw ladders
 
 ctx.beginPath();
