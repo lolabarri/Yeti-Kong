@@ -22,6 +22,7 @@ window.onload = function() {
     Plat6.draw();
     HikerZ.draw();
     HikerZ.movement(gravity);
+    HikerZ.jumpAgain();
     HikerZ.hitBottom();
   };
 

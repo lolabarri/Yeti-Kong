@@ -12,9 +12,10 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.width = width,
   this.height = height,
   this.color = color,
-  this.speedX = 10,
-  this.speedY = 10,
-  this.jumpStrenth = 10,
+  this.speed = 10,
+  this.speedX = 0,
+  this.speedY = 0,
+  this.jumpStrenth = 3,
   this.jumping = false
 };
 
@@ -24,10 +25,14 @@ HikerZrups.prototype.draw = function() {
 }
 
 HikerZrups.prototype.moveRight = function() {
-  this.x += this.speedX;
+  if (this.speedX < this.speed) {                         
+    this.speedX++;}
+  return this.x +=this.speedX;         
 };
 
 HikerZrups.prototype.moveLeft = function() {
+  if (this.speedX < -this.speed) {
+    this.speedX++;}
   this.x -= this.speedX;
 };
 
@@ -40,13 +45,27 @@ HikerZrups.prototype.moveDown = function() {
 };
 
 HikerZrups.prototype.jump = function() {
-  this.y -= this.speedY - this.jumpStrenth;
+  if(!this.jumping){
+    this.jumping = true;
+    this.speedY = -this.jumpStrenth;
+   };
 };
 
 HikerZrups.prototype.movement = function(gravity){
   this.y += this.speedY;
   this.speedY += gravity;
 };
+
+HikerZrups.prototype.jumpAgain = function() {
+  if(this.y >= 610){
+    this.y = 610;
+    this.jumping = false;
+}
+}
+
+
+
+
 // HikerZrups.prototype.moveUpRight = function() {
 //   this.speedY = 0.5;
 //   this.x += this.speedX;
