@@ -1,6 +1,8 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
+var HikerZ = new HikerZrups(3, 0, 610, 20, 20, 'rgb(255,0,0)');
+
 function Platforms(x1, y1, x2, y2) {
   this.x1 = x1,
   this.y1 = y1,
@@ -17,36 +19,36 @@ Platforms.prototype.draw = function() {
   ctx.stroke()
 };
 
-// GameArea.prototype.collision = function (HikerZrups, Platforms) {
+Platforms.prototype.collision = function (HikerZ) {
 
-//   var vectorX = (HikerZrups.x + (HikerZrups.width / 2)) -  (objects.x +  (objects.width / 2));
-//   var vectorY = (ninja.y + (ninja.height / 2)) -  (objects.y +  (objects.height / 2));
+  var vectorX = (HikerZ.x + (HikerZ.width / 2)) -  (this.x1 + ((this.x2 - this.x1)/2));
+  var vectorY = (HikerZ.y + (HikerZ.height / 2)) -  (this.y1 + ((this.y2 - this.y1)/2));
 
-//   let halfWidths = (ninja.width / 2) +  (objects.width / 2);
-//   let halfHeights = (ninja.height / 2) +  (objects.height / 2);
+  var halfWidths = (HikerZ.width / 2) +  ((this.x2 - this.x1)/2);
+  var halfHeights = (HikerZ.height / 2) +  ((this.y2 - this.y1)/2);
 
-//   let collisionDirection = null;
+  let collisionDirection = null;
 
-//   if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
-//     let offsetX = halfWidths - Math.abs(vectorX);
-//     let offsetY = halfHeights - Math.abs(vectorY);
-//     if (offsetX < offsetY) {
-//       if (vectorX > 0) {
-//         collisionDirection = "left";
-//         ninja.x += offsetX;
-//       } else {
-//         ollisionDirection = "right";
-//         ninja.x -= offsetX;
-//       }
-//     } else {
-//       if (vectorY > 0) {
-//         collisionDirection = "top";
-//         ninja.y += offsetY;
-//       } else {
-//         collisionDirection = "bottom";
-//         ninja.y -= offsetY;
-//       }
-//     }
-//   };
-//   return collisionDirection;
-// };
+  if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
+    let offsetX = halfWidths - Math.abs(vectorX);
+    let offsetY = halfHeights - Math.abs(vectorY);
+    if (offsetX < offsetY) {
+      if (vectorX > 0) {
+        collisionDirection = "left";
+        HikerZ.x += offsetX;
+      } else {
+        collisionDirection = "right";
+        HikerZ.x -= offsetX;
+      }
+    } else {
+      if (vectorY > 0) {
+        collisionDirection = "top";
+        HikerZ.y += offsetY;
+      } else {
+        collisionDirection = "bottom";
+        HikerZ.y -= offsetY;
+      }
+    }
+  };
+  return collisionDirection;
+};
