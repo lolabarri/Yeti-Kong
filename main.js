@@ -3,6 +3,7 @@ window.onload = function() {
   var HikerZ = new HikerZrups(3, 0, 610, 20, 20, 'rgb(255,0,0)');
 
   var gravity = 0.3;
+  var friction = 0.8;
 
   var Plat1 = new Platforms(75, 575, 600, 550);
   var Plat2 = new Platforms(0, 460, 525, 485);
@@ -21,7 +22,7 @@ window.onload = function() {
     Plat5.draw();
     Plat6.draw();
     HikerZ.draw();
-    HikerZ.movement(gravity);
+    HikerZ.movement(gravity, friction);
     HikerZ.jumpAgain();
     HikerZ.hitBottom();
   };
