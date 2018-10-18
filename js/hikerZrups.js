@@ -15,7 +15,7 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.speed = 15,
   this.speedX = 0,
   this.speedY = 0,
-  this.jumpStrenth = 5,
+  this.jumpStrenth = 10,
   this.jumping = false
 };
 

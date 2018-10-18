@@ -24,7 +24,7 @@ window.onload = function() {
     HikerZ.draw();
     HikerZ.movement(gravity, friction);
     HikerZ.jumpAgain();
-    Plat1.collision();
+    Plat1.collision(HikerZ);
     HikerZ.hitBottom();
   };
 

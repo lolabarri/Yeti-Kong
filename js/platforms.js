@@ -1,8 +1,6 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-var HikerZ = new HikerZrups(3, 0, 610, 20, 20, 'rgb(255,0,0)');
-
 function Platforms(x1, y1, x2, y2) {
   this.x1 = x1,
   this.y1 = y1,
