@@ -57,14 +57,12 @@ window.onload = function() {
             HikerZ.jumping = false;
         } else if (dir === "top") {
             HikerZ.speedY *= -1;
-        }
-        
-        
+        } 
+        if(HikerZ.grounded){
+          HikerZ.speedY = 0;
+        } 
       })
-
-      if(HikerZ.grounded){
-        HikerZ.speedY = 0;
-      } 
+     
       updateCanvas()
     requestAnimationFrame(loop);
   };
