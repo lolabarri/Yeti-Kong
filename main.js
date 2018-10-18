@@ -5,6 +5,7 @@ window.onload = function() {
   var gravity = 0.3;
   var friction = 0.95;
 
+  var Plat0 = new Platforms (0, 640, 600, 640);
   var Plat1 = new Platforms(75, 575, 600, 550);
   var Plat2 = new Platforms(0, 460, 525, 485);
   var Plat3 = new Platforms(75, 400, 600, 375);
@@ -15,6 +16,7 @@ window.onload = function() {
   function updateCanvas() {
     ctx.clearRect(0, 0, 600, 650);
     Gameboard();
+    Plat0.draw();
     Plat1.draw();
     Plat2.draw();
     Plat3.draw();
@@ -24,7 +26,9 @@ window.onload = function() {
     HikerZ.draw();
     HikerZ.movement(gravity, friction);
     HikerZ.jumpAgain();
+    Plat0.collision(HikerZ);
     Plat1.collision(HikerZ);
+    HikerZ.coll(Plat1);
     HikerZ.hitBottom();
   };
 

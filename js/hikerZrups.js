@@ -16,7 +16,8 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.speedX = 0,
   this.speedY = 0,
   this.jumpStrenth = 10,
-  this.jumping = false
+  this.jumping = false,
+  this.grounded = false
 };
 
 HikerZrups.prototype.draw = function() {
@@ -43,8 +44,11 @@ HikerZrups.prototype.moveDown = function() {
 };
 
 HikerZrups.prototype.jump = function() {
-  if(!this.jumping){
+  console.log("entra en jump");
+  if(!this.jumping && this.grounded){
+    console.log("condición jump");
     this.jumping = true;
+    this.grounded = false,
     this.speedY = -this.jumpStrenth;
    };
 };
@@ -60,17 +64,9 @@ HikerZrups.prototype.jumpAgain = function() {
   if(this.y >= 610){
     this.y = 610;
     this.jumping = false;
+    this.grounded = false;
 }
-}
-
-
-
-
-// HikerZrups.prototype.moveUpRight = function() {
-//   this.speedY = 0.5;
-//   this.x += this.speedX;
-//   this.y -= this.speedY;
-// };
+};
 
 HikerZrups.prototype.hitBottom = function() {
   var rockbottom = 630 - this.height;
@@ -80,7 +76,7 @@ HikerZrups.prototype.hitBottom = function() {
   if (this.y > rockbottom) {
     this.y = rockbottom;
   }
-  else if (this.y < rocktop) {
+  if (this.y < rocktop) {
     this.y = rocktop;
   }
   else if (this.x > rockright) {
@@ -88,6 +84,24 @@ HikerZrups.prototype.hitBottom = function() {
   }
   else if (this.x < rockleft) {
     this.x = rockleft;
+  }
+};
+
+HikerZrups.prototype.coll = function(Platforms) {
+var dir = Platforms.collision(HikerZrups);
+
+if (dir === "left" || dir === "right") {
+    this.speedX = 0;
+    this.jumping = false;
+} else if (dir === "bottom") {
+    this.grounded = true;
+    this.jumping = false;
+} else if (dir === "top") {
+    this.speedY *= -1;
+}
+
+if(this.grounded){
+    this.speedY = 0;
   }
 };
 

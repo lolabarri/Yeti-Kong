@@ -28,8 +28,8 @@ Platforms.prototype.collision = function (HikerZ) {
   let collisionDirection = null;
 
   if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
-    let offsetX = halfWidths - Math.abs(vectorX);
-    let offsetY = halfHeights - Math.abs(vectorY);
+    var offsetX = halfWidths - Math.abs(vectorX);
+    var offsetY = halfHeights - Math.abs(vectorY);
     if (offsetX < offsetY) {
       if (vectorX > 0) {
         collisionDirection = "left";
