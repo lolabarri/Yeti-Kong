@@ -15,7 +15,7 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.speed = 15,
   this.speedX = 0,
   this.speedY = 0,
-  this.jumpStrength = 7,
+  this.jumpStrength = 8,
   this.jumping = false,
   this.grounded = false  // maybe false?
 };
@@ -44,7 +44,6 @@ HikerZrups.prototype.moveDown = function() {
 };
 
 HikerZrups.prototype.jump = function() {
-  this.grounded = true;
   console.log("entra en jump");
   if(!this.jumping && this.grounded){
     console.log("entra en condición");
