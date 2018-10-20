@@ -12,7 +12,7 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.width = width,
   this.height = height,
   this.color = color,
-  this.speed = 15,
+  this.speed = 8,
   this.speedX = 0,
   this.speedY = 0,
   this.jumpStrength = 8,
@@ -58,8 +58,8 @@ HikerZrups.prototype.movement = function(gravity, friction){
   this.speedX *= friction;
 };
 
-HikerZrups.prototype.hitBottom = function() {
-  var rockbottom = 630;
+HikerZrups.prototype.boundaries = function() {
+  var rockbottom = 650;
   var rocktop = 0;
   var rockright = 590 - this.width / 2;
   var rockleft = 0;
@@ -79,4 +79,13 @@ HikerZrups.prototype.hitBottom = function() {
 
 HikerZrups.prototype.receiveDamage = function(damage) {
    this.lives -= damage;
-}
+};
+
+HikerZrups.prototype.checkWinOrLose = function() {
+  if (this.lives === 0) {
+    alert("You lose");
+  }
+  else if (this.x <= 10 && this.y <= 200) {
+    alert("You win");
+  }
+};

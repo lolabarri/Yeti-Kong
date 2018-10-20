@@ -13,7 +13,6 @@ function Snowballs(x, y, radius, startAngle, endAngle, anticlockwise) {
   this.height = 10,
   this.speedX = 2,
   this.speedY = 0,
-  this.gravity = 0.3,
   this.jumping = false;
   this.grounded = false;
 }
@@ -28,13 +27,13 @@ Snowballs.prototype.draw = function() {
   ctx.stroke();
 };
 
-Snowballs.prototype.movement = function(gravity, friction){
+Snowballs.prototype.movement = function(gravity){
   this.x += this.speedX;
   this.y += this.speedY;
-  this.speedY += this.gravity;
+  this.speedY += gravity;
 };
 
-Snowballs.prototype.hitBottom = function() {
+Snowballs.prototype.boundaries = function() {
   var rockbottom = 630;
   var rocktop = 0;
   var rockright = 590 - this.width / 2;

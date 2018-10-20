@@ -4,8 +4,9 @@ window.onload = function() {
   var Boardgame = new Gameboard();
   var Snowbullets = new Snowballs(100, 30, 10, 0, 2*Math.PI, false);
   var gravity = 0.3;
-  var friction = 0.95;
+  var friction = 0.8;
   var damage = 1;
+  var keys = [];
 
   var Plat0 = new Platforms(0, 630, 600, 20);
   var Plat1 = new Platforms(75, 570, 600, 20);
@@ -25,86 +26,69 @@ window.onload = function() {
     HikerZ.draw();
     Snowbullets.draw();
     HikerZ.movement(gravity, friction);
-    Snowbullets.movement();
-    HikerZ.hitBottom();
-    Snowbullets.hitBottom();
+    Snowbullets.movement(gravity);
+    HikerZ.boundaries();
+    Snowbullets.boundaries();
     Boardgame.drawLives(HikerZ);
+    // HikerZ.checkWinOrLose();
   };
 
   function loop() {
+    document.onkeydown = function (e) {
+      keys[e.keyCode] = true;
+    };
     
-    document.onkeydown = function(e) {
-      switch (e.keyCode) {
-        case 32: HikerZ.jump(); break;
-        case 38: HikerZ.moveUp(); break;
-        case 40: HikerZ.moveDown(); break;
-        case 37: HikerZ.moveLeft(); break;
-        case 39: HikerZ.moveRight(); break;
-      }
+    document.onkeyup = function (e) {
+        keys[e.keyCode] = false;
     };
 
-    platformsArr.forEach(e => {
-      var dir = Boardgame.collision(HikerZ, e);
+    if (keys[32]) { HikerZ.jump(); }
+    if (keys[38]) { HikerZ.moveUp(); }
+    if (keys[40]) { HikerZ.moveDown(); }
+    if (keys[37]) { HikerZ.moveLeft(); }
+    if (keys[39]) { HikerZ.moveRight(); }
+
+    HikerZ.grounded = false;
+    platformsArr.forEach(el => {
+      var dir = Boardgame.collision(HikerZ, el);
       if (dir === "left" || dir === "right") {
-          HikerZ.speedX = 0;
-          HikerZ.jumping = false;
+        HikerZ.speedX = 0;
+        HikerZ.jumping = false;
       } else if (dir === "bottom") {
-        console.log("entra en bottom")
-          HikerZ.grounded = true;
-          HikerZ.jumping = false;
+        HikerZ.grounded = true;
+        HikerZ.jumping = false;
       } else if (dir === "top") {
           HikerZ.speedY *= -1;
       }
-      
     }
   );
 
-  if(HikerZ.grounded){
-    HikerZ.speedY = 0;
-  }; 
-
-      platformsArr.forEach(e => {
-        var dir = Boardgame.collision(Snowbullets, e);
-        if (dir === "left" || dir === "right") {
-            Snowbullets.speedX = 0;
-            Snowbullets.jumping = false;
-        } else if (dir === "bottom") {
-          console.log("entra en bottom")
-            Snowbullets.grounded = true;
-            Snowbullets.jumping = false;
-        } else if (dir === "top") {
-            Snowbullets.speedY *= -1;
+      if(HikerZ.grounded){
+      HikerZ.speedY = 0;
+      };
+      
+    Snowbullets.grounded = false;
+    platformsArr.forEach(el => {
+      var dir = Boardgame.collision(Snowbullets, el);
+      if (dir === "left" || dir === "right") {
+        Snowbullets.speedX = 0;
+        Snowbullets.jumping = false;
+    } else if (dir === "bottom") {
+        Snowbullets.grounded = true;
+        Snowbullets.jumping = false;
+    } else if (dir === "top") {
+        Snowbullets.speedY *= -1;
         }
-         
-      })
+      }
+    );
+  
       if(Snowbullets.grounded){
         Snowbullets.speedY = 0;
       };
-
-      var dir = Boardgame.collision(HikerZ, Snowbullets);
-      if (dir === "left" || dir === "right") {
-          HikerZ.receiveDamage(damage);
-          HikerZ.x = 0;
-          HikerZ.y = 610;
-      } else if (dir === "bottom") {
-        console.log("entra en bottom")
-        HikerZ.receiveDamage(damage);
-          HikerZ.x = 0;
-          HikerZ.y = 610;
-      } else if (dir === "top") {
-        HikerZ.receiveDamage(damage);
-          HikerZ.x = 0;
-          HikerZ.y = 610;
-      }
-       
-    
-    if(HikerZ.grounded){
-      HikerZ.speedY = 0;
-    };
         
-    updateCanvas()
-    requestAnimationFrame(loop);
-  };
+   updateCanvas()
+   requestAnimationFrame(loop);
+};
 
   loop();
 };

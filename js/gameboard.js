@@ -18,21 +18,21 @@ Gameboard.prototype.collision = function (HikerZ, object) {
   if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
     var offsetX = halfWidths - Math.abs(vectorX);
     var offsetY = halfHeights - Math.abs(vectorY);
-    if (offsetX < offsetY) {
-      if (vectorX > 0) {
-        collisionDirection = "left";
-        HikerZ.x += offsetX;
-      } else {
-        collisionDirection = "right";
-        HikerZ.x -= offsetX;
-      }
-    } else {
+    if (offsetX >= offsetY) {
       if (vectorY > 0) {
         collisionDirection = "top";
         HikerZ.y += offsetY;
       } else {
         collisionDirection = "bottom";
         HikerZ.y -= offsetY;
+      }
+    } else {
+      if (vectorX > 0) {
+        collisionDirection = "left";
+        HikerZ.x += offsetX;
+      } else {
+        collisionDirection = "right";
+        HikerZ.x -= offsetX;
       }
     }
   };
