@@ -77,6 +77,6 @@ HikerZrups.prototype.hitBottom = function() {
   }
 };
 
-// HikerZrups.prototype.receiveDamage = function(damage) {
-//    this.lives -= damage //cómo en los vikings ;)
-// }
+HikerZrups.prototype.receiveDamage = function(damage) {
+   this.lives -= damage;
+}

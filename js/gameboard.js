@@ -39,5 +39,12 @@ Gameboard.prototype.collision = function (HikerZ, object) {
   return collisionDirection;
 };
 
+Gameboard.prototype.drawLives = function(HikerZ){
+  ctx.font = 'bold 15pt Calibri';
+  ctx.fillStyle = 'rgb(162,210,223)';
+  ctx.fillText('Lives: '+Math.floor(HikerZ.lives), 500, 20);
+  ctx.textBaseline = "top";
+};
+
 
 
