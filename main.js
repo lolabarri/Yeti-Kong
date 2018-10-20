@@ -26,6 +26,7 @@ window.onload = function() {
     HikerZ.movement(gravity, friction);
     Snowbullets.movement();
     HikerZ.hitBottom();
+    Snowbullets.hitBottom();
   };
 
   function loop() {
@@ -60,23 +61,23 @@ window.onload = function() {
     HikerZ.speedY = 0;
   }; 
 
-      // platformsArr.forEach(e => {
-      //   var dir = Boardgame.collision(Snowbullets, e);
-      //   if (dir === "left" || dir === "right") {
-      //       Snowbullets.speedX = 0;
-      //       Snowbullets.jumping = false;
-      //   } else if (dir === "bottom") {
-      //     console.log("entra en bottom")
-      //       Snowbullets.grounded = true;
-      //       Snowbullets.jumping = false;
-      //   } else if (dir === "top") {
-      //       Snowbullets.speedY *= -1;
-      //   }
+      platformsArr.forEach(e => {
+        var dir = Boardgame.collision(Snowbullets, e);
+        if (dir === "left" || dir === "right") {
+            Snowbullets.speedX = 0;
+            Snowbullets.jumping = false;
+        } else if (dir === "bottom") {
+          console.log("entra en bottom")
+            Snowbullets.grounded = true;
+            Snowbullets.jumping = false;
+        } else if (dir === "top") {
+            Snowbullets.speedY *= -1;
+        }
          
-      // })
-      // if(Snowbullets.grounded){
-      //   Snowbullets.speedY = 0;
-      // }
+      })
+      if(Snowbullets.grounded){
+        Snowbullets.speedY = 0;
+      }
       updateCanvas()
     requestAnimationFrame(loop);
   };
