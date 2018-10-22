@@ -1,6 +1,6 @@
 window.onload = function() {
 
-  var HikerZ = new HikerZrups(3, 0, 610, 20, 20, 'rgb(255,0,0)');
+  var HikerZ = new HikerZrups(3, 0, 610, 30, 30, 'rgb(255,0,0)');
   var Boardgame = new Gameboard();
   var Snowbullets = new Snowballs(100, 30, 10, 0, 2*Math.PI, false);
   var gravity = 0.3;
@@ -20,9 +20,10 @@ window.onload = function() {
 
   function updateCanvas() {
     ctx.clearRect(0, 0, 600, 650);
-    platformsArr.forEach(e => {
-      e.draw();
+    platformsArr.forEach(el => {
+      el.draw();
     });
+    Boardgame.draw();
     HikerZ.draw();
     Snowbullets.draw();
     HikerZ.movement(gravity, friction);
@@ -30,7 +31,7 @@ window.onload = function() {
     HikerZ.boundaries();
     Snowbullets.boundaries();
     Boardgame.drawLives(HikerZ);
-    // HikerZ.checkWinOrLose();
+    HikerZ.checkWinOrLose();
   };
 
   function loop() {
@@ -43,8 +44,6 @@ window.onload = function() {
     };
 
     if (keys[32]) { HikerZ.jump(); }
-    if (keys[38]) { HikerZ.moveUp(); }
-    if (keys[40]) { HikerZ.moveDown(); }
     if (keys[37]) { HikerZ.moveLeft(); }
     if (keys[39]) { HikerZ.moveRight(); }
 
@@ -85,6 +84,22 @@ window.onload = function() {
       if(Snowbullets.grounded){
         Snowbullets.speedY = 0;
       };
+
+    
+    var dir = Boardgame.collision(HikerZ, Snowbullets);
+    if (dir === "left" || dir === "right") {
+      HikerZ.lives -= damage;
+      HikerZ.x = 0;
+      HikerZ.y = 610;
+  } else if (dir === "bottom") {
+      HikerZ.lives -= damage;
+      HikerZ.x = 0;
+      HikerZ.y = 610;
+  } else if (dir === "top") {
+      HikerZ.lives -= damage;
+      HikerZ.x = 0;
+      HikerZ.y = 610;
+    };
         
    updateCanvas()
    requestAnimationFrame(loop);

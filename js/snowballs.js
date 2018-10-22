@@ -13,8 +13,8 @@ function Snowballs(x, y, radius, startAngle, endAngle, anticlockwise) {
   this.height = 10,
   this.speedX = 2,
   this.speedY = 0,
-  this.jumping = false;
-  this.grounded = false;
+  this.jumping = false,
+  this.grounded = false
 }
 
 Snowballs.prototype.draw = function() {

@@ -2,8 +2,20 @@
 //Global Variables
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+var img = new Image();
 
-function Gameboard() {};
+function Gameboard() {
+  this.x = 0,
+  this.y = 0,
+  this.width = 600,
+  this.height = 650,
+  this.image = img
+};
+
+Gameboard.prototype.draw = function() {
+  this.image.src = './Images/bg.png';
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+};
 
 Gameboard.prototype.collision = function (HikerZ, object) {
 
@@ -45,6 +57,3 @@ Gameboard.prototype.drawLives = function(HikerZ){
   ctx.fillText('Lives: '+Math.floor(HikerZ.lives), 500, 20);
   ctx.textBaseline = "top";
 };
-
-
-
