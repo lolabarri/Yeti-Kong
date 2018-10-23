@@ -9,11 +9,12 @@ function Gameboard() {
   this.y = 0,
   this.width = 600,
   this.height = 650,
-  this.image = img
+  this.image = new Image();
+  this.snowArr = []
 };
 
 Gameboard.prototype.draw = function() {
-  this.image.src = './Images/bg.png';
+  this.image.src = './Images/bg_snow.png';
   ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 };
 
@@ -56,4 +57,61 @@ Gameboard.prototype.drawLives = function(HikerZ){
   ctx.fillStyle = 'rgb(162,210,223)';
   ctx.fillText('Lives: '+Math.floor(HikerZ.lives), 500, 20);
   ctx.textBaseline = "top";
+};
+
+Gameboard.prototype.createSnow = function(){
+  for (var i = 0; this.snowArr.length < 10; i++){
+    return this.snowArr.push(new Snowballs(100, 30, 10, 0, 2*Math.PI, false));
+  }; 
+};
+
+Gameboard.prototype.drawSnow = function(gravity) {
+  for (var i = 0; i < this.snowArr.length; i++) {
+    this.snowArr[i].draw();
+    this.snowArr[i].movement(gravity);
+    this.snowArr[i].boundaries();
+  };
+};
+
+Gameboard.prototype.collSnow = function(platformsArr) {
+  for (var i = 0; i < this.snowArr.length; i++) {
+    this.snowArr[i].grounded = false;
+    platformsArr.forEach(el => {
+      var dir = this.collision(this.snowArr[i], el);
+      if (dir === "left" || dir === "right") {
+        this.snowArr[i].speedX = 0;
+        this.snowArr[i].jumping = false;
+    } else if (dir === "bottom") {
+        this.snowArr[i].grounded = true;
+        this.snowArr[i].jumping = false;
+    } else if (dir === "top") {
+        this.snowArr[i].speedY *= -1;
+        }
+      }
+    );
+  
+      if(this.snowArr[i].grounded){
+        this.snowArr[i].speedY = 0;
+      };
+}
+};
+
+Gameboard.prototype.collHiker = function(HikerZ, damage) {
+    this.snowArr.forEach(el => {
+      var dir = this.collision(HikerZ, el);
+      if (dir === "left" || dir === "right") {
+        HikerZ.lives -= damage;
+        HikerZ.x = 0;
+        HikerZ.y = 610;
+      } else if (dir === "bottom") {
+        HikerZ.lives -= damage;
+        HikerZ.x = 0;
+        HikerZ.y = 610;
+      } else if (dir === "top") {
+        HikerZ.lives -= damage;
+        HikerZ.x = 0;
+        HikerZ.y = 610;
+      }
+    }
+  );
 };

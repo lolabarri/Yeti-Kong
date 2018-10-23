@@ -20,7 +20,7 @@ function Snowballs(x, y, radius, startAngle, endAngle, anticlockwise) {
 Snowballs.prototype.draw = function() {
   ctx.beginPath(),
   ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, this.anticlockwise),
-  ctx.fillStyle = 'rgb(240,255,255)',
+  ctx.fillStyle = 'rgb(218,231,231)',
   ctx.fill(),
   ctx.strokeWidth = 1,
   ctx.strokeStyle = 'rgb(162,210,223)',
