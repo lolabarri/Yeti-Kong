@@ -1,6 +1,7 @@
 window.onload = function() {
 
-  var HikerZ = new HikerZrups(3, 0, 610, 30, 30, 'rgb(255,0,0)');
+  var gameStarted = false;
+  var HikerZ = new HikerZrups(3, 650, 610, 30, 30, 'rgb(255,0,0)');
   var Boardgame = new Gameboard();
   var gravity = 0.3;
   var friction = 0.8;
@@ -8,9 +9,6 @@ window.onload = function() {
   var keys = [];
 
   setInterval(()=>Boardgame.createSnow(), 5000);
-
-  console.log(Boardgame.createSnow);
-  console.log(Boardgame.snowArr);
 
   var Plat0 = new Platforms(0, 630, 600, 20);
   var Plat1 = new Platforms(75, 570, 600, 20);
@@ -21,6 +19,27 @@ window.onload = function() {
   var Plat6 = new Platforms(0, 125, 525, 20);
 
   var platformsArr = [Plat0, Plat1, Plat2, Plat3, Plat4, Plat5, Plat6];
+
+  document.body.addEventListener("keydown", function(e) {
+    if (e.keyCode == 13 && !gameStarted) {startGame();}
+    if (e.keyCode == 13 && HikerZ.lives <= 0) {reset();}
+    keys[e.keyCode] = true;
+  });
+
+  function startGame() {
+    gameStarted = true;
+    board.clear();
+    requestAnimationFrame(loop);
+  };
+
+  function reset() {
+    board.clear();
+    ninjaCat.resetGame();
+    ninjaCat.deadNinja = false;
+    board.clearPoints();
+    _timer();
+    requestAnimationFrame(loop);
+  };
 
   function updateCanvas() {
     ctx.clearRect(0, 0, 600, 650);

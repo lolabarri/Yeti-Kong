@@ -101,15 +101,15 @@ Gameboard.prototype.collHiker = function(HikerZ, damage) {
       var dir = this.collision(HikerZ, el);
       if (dir === "left" || dir === "right") {
         HikerZ.lives -= damage;
-        HikerZ.x = 0;
+        HikerZ.x = 650;
         HikerZ.y = 610;
       } else if (dir === "bottom") {
         HikerZ.lives -= damage;
-        HikerZ.x = 0;
+        HikerZ.x = 650;
         HikerZ.y = 610;
       } else if (dir === "top") {
         HikerZ.lives -= damage;
-        HikerZ.x = 0;
+        HikerZ.x = 650;
         HikerZ.y = 610;
       }
     }

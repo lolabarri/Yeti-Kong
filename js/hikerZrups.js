@@ -18,26 +18,31 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.jumpStrength = 6,
   this.jumping = false,
   this.grounded = false,
-  this.image = img
+  this.image = new Image()
 };
 
-HikerZrups.prototype.draw = function(image) {
-  this.image.src = './Images/hikerZrups.png';
-  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-}
+HikerZrups.prototype.draw = function() {
+  if (this.speedX > 0) {
+    this.image.src = './Images/HZ walk-right.png';
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);}
+  else if (this.speedX < 0) {
+    this.image.src = './Images/HZ walk-left.png';
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);}
+  else if (this.speedX === 0) {
+    this.image.src = './Images/hikerZrups.png';
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);}
+  };
+
 
 HikerZrups.prototype.moveRight = function() {
   if (this.speedX < this.speed) {                         
     this.speedX++;
-    this.image.src = './Images/HZ walk-right.png';
   }        
 };
 
 HikerZrups.prototype.moveLeft = function() {
   if (this.speedX > -this.speed) {
     this.speedX--;
-    this.image.src = './Images/HZ walk-left.png';
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 };
 
@@ -80,7 +85,7 @@ HikerZrups.prototype.receiveDamage = function(damage) {
 };
 
 HikerZrups.prototype.checkWinOrLose = function() {
-  if (this.lives === 0) {
+  if (this.lives <= 0) {
     alert("You lose");
   }
   else if (this.x <= 10 && this.y <= 200) {

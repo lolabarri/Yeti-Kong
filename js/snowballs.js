@@ -38,18 +38,25 @@ Snowballs.prototype.boundaries = function() {
   var rocktop = 0;
   var rockright = 590 - this.width / 2;
   var rockleft = 0;
+  
   if (this.y > rockbottom) {
     this.y = rockbottom;
   }
   else if (this.y < rocktop) {
     this.y = rocktop;
   }
-  else if (this.x > rockright) {
-    this.x = rockright;
-    this.speedX = - this.speedX;
-  }
+  
   else if (this.x < rockleft) {
     this.x = rockleft;
     this.speedX = - this.speedX;
+  }
+  else if (this.x > rockright && this.y < 610) {
+    this.x = rockright;
+    this.speedX = - this.speedX;
+  }
+
+  else if (this.x > rockright && this.y > 610) {
+    this.x = this.x;
+    this.speedX = this.speedX;
   }
 };
