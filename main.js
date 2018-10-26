@@ -1,16 +1,17 @@
 window.onload = function() {
 
-  var gameStarted = false;
-  var HikerZ = new HikerZrups(3, 650, 610, 30, 30, 'rgb(255,0,0)');
+  var HikerZ = new HikerZrups(1, 650, 610, 30, 30, 'rgb(255,0,0)');
   var Boardgame = new Gameboard();
   var gravity = 0.3;
   var friction = 0.8;
   var damage = 1;
   var keys = [];
 
+  Boardgame.init(HikerZ);
+  
   setInterval(()=>Boardgame.createSnow(), 5000);
 
-  var Plat0 = new Platforms(0, 630, 600, 20);
+  var Plat0 = new Platforms(0, 640, 600, 20);
   var Plat1 = new Platforms(75, 570, 600, 20);
   var Plat2 = new Platforms(0, 485, 525, 20);
   var Plat3 = new Platforms(75, 395, 600, 20);
@@ -21,25 +22,17 @@ window.onload = function() {
   var platformsArr = [Plat0, Plat1, Plat2, Plat3, Plat4, Plat5, Plat6];
 
   document.body.addEventListener("keydown", function(e) {
-    if (e.keyCode == 13 && !gameStarted) {startGame();}
-    if (e.keyCode == 13 && HikerZ.lives <= 0) {reset();}
+    if (e.keyCode == 13 && !HikerZ.alive) {startGame();}
+    if (e.keyCode == 13 && !HikerZ.dead) {startGame();}
     keys[e.keyCode] = true;
   });
 
   function startGame() {
-    gameStarted = true;
-    board.clear();
-    requestAnimationFrame(loop);
+    HikerZ.alive = true;
+    HikerZ.dead = false;
+    loop();
   };
 
-  function reset() {
-    board.clear();
-    ninjaCat.resetGame();
-    ninjaCat.deadNinja = false;
-    board.clearPoints();
-    _timer();
-    requestAnimationFrame(loop);
-  };
 
   function updateCanvas() {
     ctx.clearRect(0, 0, 600, 650);
@@ -52,7 +45,7 @@ window.onload = function() {
     HikerZ.movement(gravity, friction);
     HikerZ.boundaries();
     Boardgame.drawLives(HikerZ);
-    // HikerZ.checkWinOrLose();
+    Boardgame.checkWinOrLose(HikerZ);
   };
 
   function loop() {
@@ -67,6 +60,7 @@ window.onload = function() {
     if (keys[32]) { HikerZ.jump(); }
     if (keys[37]) { HikerZ.moveLeft(); }
     if (keys[39]) { HikerZ.moveRight(); }
+    if (keys[13] && !HikerZ.alive) {startGame();}
 
     HikerZ.grounded = false;
     platformsArr.forEach(el => {
@@ -89,10 +83,10 @@ window.onload = function() {
 
    Boardgame.collSnow(platformsArr); 
    Boardgame.collHiker(HikerZ, damage);   
-   updateCanvas()
+   updateCanvas();
    requestAnimationFrame(loop);
 };
 
-  loop();
+//loop();
 };
 

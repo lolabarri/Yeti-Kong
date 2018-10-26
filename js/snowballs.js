@@ -36,8 +36,8 @@ Snowballs.prototype.movement = function(gravity){
 Snowballs.prototype.boundaries = function() {
   var rockbottom = 630;
   var rocktop = 0;
-  var rockright = 590 - this.width / 2;
-  var rockleft = 0;
+  var rockright = 590 - this.width/2;
+  var rockleft = 0 + this.width/2;
   
   if (this.y > rockbottom) {
     this.y = rockbottom;
@@ -50,12 +50,12 @@ Snowballs.prototype.boundaries = function() {
     this.x = rockleft;
     this.speedX = - this.speedX;
   }
-  else if (this.x > rockright && this.y < 610) {
+  else if (this.x > rockright && this.y < 630) {
     this.x = rockright;
     this.speedX = - this.speedX;
   }
 
-  else if (this.x > rockright && this.y > 610) {
+  else if (this.x == rockright && this.y > 630) {
     this.x = this.x;
     this.speedX = this.speedX;
   }

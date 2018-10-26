@@ -1,7 +1,7 @@
 // Global Variables
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var img = new Image();
+// var img = new Image();
 
 // Constructor HikerZrups
 
@@ -18,6 +18,8 @@ function HikerZrups(lives, x, y, width, height, color) {
   this.jumpStrength = 6,
   this.jumping = false,
   this.grounded = false,
+  this.dead = false,
+  this.alive = false,
   this.image = new Image()
 };
 
@@ -84,11 +86,20 @@ HikerZrups.prototype.receiveDamage = function(damage) {
    this.lives -= damage;
 };
 
-HikerZrups.prototype.checkWinOrLose = function() {
-  if (this.lives <= 0) {
-    alert("You lose");
-  }
-  else if (this.x <= 10 && this.y <= 200) {
-    alert("You win");
-  }
-};
+// HikerZrups.prototype.checkWinOrLose = function() {
+//   if (this.lives <= 0) {
+//     ctx.clearRect(0, 0, 600, 650);
+//     this.image.src = './Images/gameOver.png';
+//     ctx.drawImage(this.image, 0, 0, 600, 650);
+//     this.dead = true;
+//     this.alive = false;
+
+//   }
+//   else if (this.x <= 10 && this.y <= 200) {
+//     ctx.clearRect(0, 0, 600, 650);
+//     this.image.src = './Images/gameWin.png';
+//     ctx.drawImage(this.image, 0, 0, 600, 650);
+//     this.dead = true;
+//     this.alive = false;
+//   }
+// };

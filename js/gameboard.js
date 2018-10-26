@@ -18,6 +18,35 @@ Gameboard.prototype.draw = function() {
   ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 };
 
+Gameboard.prototype.init = function(HikerZ) {
+  var that = this;
+  ctx.clearRect(0, 0, 600, 650);
+  this.image.src = './Images/gameStart.png';
+  this.image.onload = function() {
+  ctx.drawImage(that.image, 0, 0, 600, 650);
+  HikerZ.dead = false;
+  HikerZ.alive = true;
+  }
+};
+
+Gameboard.prototype.checkWinOrLose = function(HikerZ) {
+  if (HikerZ.lives <= 0) {
+    ctx.clearRect(0, 0, 600, 650);
+    this.image.src = './Images/gameOver.png';
+    ctx.drawImage(this.image, 0, 0, 600, 650);
+    HikerZ.dead = true;
+    HikerZ.alive = false;
+
+  }
+  else if (HikerZ.x <= 10 && HikerZ.y <= 200) {
+    ctx.clearRect(0, 0, 600, 650);
+    this.image.src = './Images/gameWin.png';
+    ctx.drawImage(this.image, 0, 0, 600, 650);
+    HikerZ.dead = true;
+    HikerZ.alive = false;
+  }
+};
+
 Gameboard.prototype.collision = function (HikerZ, object) {
 
   var vectorX = (HikerZ.x + (HikerZ.width / 2)) -  (object.x +  (object.width / 2));
@@ -53,8 +82,8 @@ Gameboard.prototype.collision = function (HikerZ, object) {
 };
 
 Gameboard.prototype.drawLives = function(HikerZ){
-  ctx.font = 'bold 15pt Calibri';
-  ctx.fillStyle = 'rgb(162,210,223)';
+  ctx.font = 'bold 15pt Frozito';
+  ctx.fillStyle = 'rgb(255,250,250)';
   ctx.fillText('Lives: '+Math.floor(HikerZ.lives), 500, 20);
   ctx.textBaseline = "top";
 };
@@ -101,15 +130,15 @@ Gameboard.prototype.collHiker = function(HikerZ, damage) {
       var dir = this.collision(HikerZ, el);
       if (dir === "left" || dir === "right") {
         HikerZ.lives -= damage;
-        HikerZ.x = 650;
+        HikerZ.x = 0;
         HikerZ.y = 610;
       } else if (dir === "bottom") {
         HikerZ.lives -= damage;
-        HikerZ.x = 650;
+        HikerZ.x = 0;
         HikerZ.y = 610;
       } else if (dir === "top") {
         HikerZ.lives -= damage;
-        HikerZ.x = 650;
+        HikerZ.x = 0;
         HikerZ.y = 610;
       }
     }

@@ -8,21 +8,6 @@ body {
   justify-content: center;
 }
 
-canvas {
+canvas .gameOn {
   margin: 10px;
-};
-
-.gameStart {
-  background-image: '/Images/gameStart.jpg';
-  background-repeat: no-repeat;
-};
-
-.gameOver {
-  background-image: '/Images/gameOver.jpg';
-  background-repeat: no-repeat;
-};
-
-.gameWin {
-  background-image: '/Images/gameWin.jpg';
-  background-repeat: no-repeat;
 };
