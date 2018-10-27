@@ -137,15 +137,52 @@ Gameboard.prototype.collHiker = function(HikerZ, damage) {
         HikerZ.lives -= damage;
         HikerZ.x = 0;
         HikerZ.y = 610;
+  
       } else if (dir === "bottom") {
         HikerZ.lives -= damage;
         HikerZ.x = 0;
         HikerZ.y = 610;
+  
       } else if (dir === "top") {
         HikerZ.lives -= damage;
         HikerZ.x = 0;
         HikerZ.y = 610;
+  
       }
     }
   );
+};
+
+Gameboard.prototype.colEnemies1 = function(HikerZ, damage, Wingmonster1) {
+  var dir = this.collision(HikerZ, Wingmonster1);
+  if (dir === "left" || dir === "right") {
+    HikerZ.lives -= damage;
+    HikerZ.x = 590;
+    HikerZ.y = 610;
+  } else if (dir === "bottom") {
+    HikerZ.lives -= damage;
+    HikerZ.x = 590;
+    HikerZ.y = 610;
+  } else if (dir === "top") {
+    HikerZ.lives -= damage;
+    HikerZ.x = 590;
+    HikerZ.y = 610;
+  }
+};
+
+Gameboard.prototype.colEnemies2 = function(HikerZ, damage, Wingmonster2) {
+  var dir = this.collision(HikerZ, Wingmonster2);
+  if (dir === "left" || dir === "right") {
+    HikerZ.lives -= damage;
+    HikerZ.x = 590;
+    HikerZ.y = 610;
+  } else if (dir === "bottom") {
+    HikerZ.lives -= damage;
+    HikerZ.x = 590;
+    HikerZ.y = 610;
+  } else if (dir === "top") {
+    HikerZ.lives -= damage;
+    HikerZ.x = 590;
+    HikerZ.y = 610;
+  }
 };
