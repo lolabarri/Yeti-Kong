@@ -1,18 +1,14 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-function HikerZrups(lives, x, y, width, height, color) {
-  this.lives = lives,
+function TheYeti(x, y, width, height) {
   this.x = x,
   this.y = y,
   this.width = width,
   this.height = height,
-  this.color = color,
-  this.speed = 3,
-  this.speedX = 0,
-  this.speedY = 0,
-  this.jumpStrength = 6,
-  this.jumping = false,
-  this.grounded = false,
   this.image = new Image()
 };
+
+TheYeti.prototype.draw = function() {
+  this.image.src = './Images/Yeti_up.png';
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);}

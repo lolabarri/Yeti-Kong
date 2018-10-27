@@ -29,20 +29,25 @@ Gameboard.prototype.init = function(HikerZ) {
   }
 };
 
+Gameboard.prototype.gameEnd = function(HikerZ) {
+  HikerZ.alive = false;
+  HikerZ.dead = true;
+}
+
 Gameboard.prototype.checkWinOrLose = function(HikerZ) {
   if (HikerZ.lives <= 0) {
     ctx.clearRect(0, 0, 600, 650);
-    this.image.src = './Images/gameOver.png';
+    this.image.src = './Images/gameOver1.png';
     ctx.drawImage(this.image, 0, 0, 600, 650);
     HikerZ.dead = true;
     HikerZ.alive = false;
+    }
 
-  }
   else if (HikerZ.x <= 10 && HikerZ.y <= 200) {
     ctx.clearRect(0, 0, 600, 650);
-    this.image.src = './Images/gameWin.png';
+    this.image.src = './Images/gameWin1.png';
     ctx.drawImage(this.image, 0, 0, 600, 650);
-    HikerZ.dead = true;
+    HikerZ.dead = false;
     HikerZ.alive = false;
   }
 };
@@ -89,8 +94,8 @@ Gameboard.prototype.drawLives = function(HikerZ){
 };
 
 Gameboard.prototype.createSnow = function(){
-  for (var i = 0; this.snowArr.length < 10; i++){
-    return this.snowArr.push(new Snowballs(100, 30, 10, 0, 2*Math.PI, false));
+  for (var i = 0; this.snowArr.length < 30; i++){
+    return this.snowArr.push(new Snowballs(45, 15, 10, 0, 2*Math.PI, false));
   }; 
 };
 

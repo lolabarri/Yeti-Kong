@@ -1,7 +1,6 @@
 // Global Variables
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-// var img = new Image();
 
 // Constructor HikerZrups
 
@@ -85,21 +84,3 @@ HikerZrups.prototype.boundaries = function() {
 HikerZrups.prototype.receiveDamage = function(damage) {
    this.lives -= damage;
 };
-
-// HikerZrups.prototype.checkWinOrLose = function() {
-//   if (this.lives <= 0) {
-//     ctx.clearRect(0, 0, 600, 650);
-//     this.image.src = './Images/gameOver.png';
-//     ctx.drawImage(this.image, 0, 0, 600, 650);
-//     this.dead = true;
-//     this.alive = false;
-
-//   }
-//   else if (this.x <= 10 && this.y <= 200) {
-//     ctx.clearRect(0, 0, 600, 650);
-//     this.image.src = './Images/gameWin.png';
-//     ctx.drawImage(this.image, 0, 0, 600, 650);
-//     this.dead = true;
-//     this.alive = false;
-//   }
-// };
