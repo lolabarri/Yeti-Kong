@@ -3,6 +3,8 @@
 
 A custom version of old Donkey Kong game for the Ironhack bootcamp first project. I have used Javascript, HTML and CSS, and canvas for all the drawings and animations.
 
+You can give it a try here: https://lolabarri.github.io/Yeti-Kong/
+
 Since I do not draw that cool, I give here the credits for all the pictures and also for the music (I do not compose either):
 
 Background and tiles: Tio Aimar @ opengameart.org
